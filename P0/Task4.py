@@ -28,30 +28,26 @@ The list of numbers should be print out one per line in lexicographic order with
 def getTextNumbers(): 
     sendersDict ={}
     recieversDict = {}
-    for record in texts: # O(n)
-        if not sendersDict.get(record[0]):
-            sendersDict[record[0]] = True
-        if not recieversDict.get(record[1]):
-            recieversDict[record[1]] =True
+    for record in texts: # O(n) --> n = len(texts)
+        sendersDict[record[0]] = sendersDict.get(record[0], True)
+        recieversDict[record[1]] = recieversDict.get(record[1], True)
     return sendersDict, recieversDict
 
 def getCallRecievers():
     recieversDict = {}
-    for record in calls: # O(m)
-        if not recieversDict.get(record[1]):
-            recieversDict[record[1]] =True
+    for record in calls: # O(m) --> m = len(calls)
+        recieversDict[record[1]] = recieversDict.get(record[1], True)
     return recieversDict
 
 def printPossibleMarketers():
     textSenders, textRecievers = getTextNumbers()
     callRecievers = getCallRecievers()
     telemarketers = set()
-    for call in calls: # O(m)
+    for call in calls: 
         caller = call[0]
-        if (not caller in textSenders) or (not caller in textRecievers) or (not caller in callRecievers):
+        if (not caller in textSenders) and (not caller in textRecievers) and (not caller in callRecievers):
             telemarketers.add(caller)
-    telemarketers = list(telemarketers)
-    telemarketers.sort()
+    telemarketers = sorted(telemarketers) # O(nlogn)
     print(f'These numbers could be telemarketers:')
     for num in telemarketers:
         print(f'{num}')

@@ -47,7 +47,7 @@ The percentage should have 2 decimal digits
 """
 
 # function to get area code from telephone number
-def getTelNumCode(num): 
+def getTelNumCode(num): # O(1)
   if num[0] == "(":
     num = f'{num.split(")")[0]})'
   elif num[:3] == "140":
@@ -57,7 +57,7 @@ def getTelNumCode(num):
   return num
 
 #check if number starts with "(080)"
-def isBangaloreNum(num):
+def isBangaloreNum(num): # O(1)
   if num[:5] =="(080)":
     return True
   return False
@@ -67,8 +67,8 @@ def getAreaCodeList():
   areaCodes = []
   for call in calls: #O(n)
     caller = call[0]
-    if isBangaloreNum(caller): #(k)
-      areaCode = getTelNumCode(call[1]) #O(m)
+    if isBangaloreNum(caller): # O(1)
+      areaCode = getTelNumCode(call[1]) #O(1)
       areaCodes.append(areaCode)
   return areaCodes
 
@@ -77,17 +77,16 @@ def getPercOfBangloreCalls():
   codes = getAreaCodeList()
   totalCalls = len(codes)
   bangCodeCount = 0
-  for code in codes:
+  for code in codes: # O(n)
     if code == "(080)":
       bangCodeCount += 1
   return (bangCodeCount*100 /totalCalls)
 
 # Prints string result for both part 1 and part 2
 def printResult():
-  areaCodes = set(getAreaCodeList())
-  areaCodes = list(areaCodes)
-  areaCodes.sort()
-  callPerc = round(getPercOfBangloreCalls(), 2)
+  areaCodes = set(getAreaCodeList()) # O(n)
+  areaCodes = sorted(areaCodes) # O(nlogn)
+  callPerc = round(getPercOfBangloreCalls(), 2) 
   # print the area code list for Banglore callers
   print("The numbers called by people in Bangalore have codes:")
   for code in areaCodes:

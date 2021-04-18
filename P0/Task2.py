@@ -21,26 +21,14 @@ September 2016.".
 """
 longestTimeSpent = 0
 callsDict = {}
-telNum = ""
 for call in calls:
     caller = call[0]
     reciever = call[1]
-    duration = int(call[len(call) - 1])
-    if callsDict.get(caller):
-        callsDict[caller] = callsDict.get(caller) + duration
-    else:
-        callsDict[caller] = duration
-
-    if callsDict.get(reciever):
-        callsDict[reciever] = callsDict.get(reciever) + duration
-    else:
-        callsDict[reciever] = duration
-
-    if callsDict[caller] > longestTimeSpent: 
-        longestTimeSpent = callsDict[caller]
-        telNum = caller
-    elif callsDict[reciever] > longestTimeSpent :
-        longestTimeSpent = callsDict[reciever]
-        telNum = reciever
+    duration = int(call[-1])
+    #adding caller and reciever numbers into callsDict
+    callsDict[caller] = callsDict.get(caller, 0) + duration
+    callsDict[reciever] = callsDict.get(reciever,0) + duration
+telNum = max(callsDict, key = lambda x: callsDict[x])
+longestTimeSpent = callsDict[telNum]
 
 print(f'{telNum} spent the longest time, {longestTimeSpent} seconds, on the phone during September 2016.')

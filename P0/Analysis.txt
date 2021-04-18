@@ -1,17 +1,13 @@
 Task0 - The time complexity is O(1). The rate of the output does not chage as the list grows longer. 
 
-Task1 - I used 2 for loops to get the numbers from the calls and texts lists that is linear time for each list. So the complexity is O(n + m).
+Task1 - I used 2 for loops to get the numbers from the calls and texts lists that is linear time for each list. So the complexity is O(n), n being 
+          the number of unique telephone numbers.
 
-Task2 - I used a for loop to get the callers and the recievers from the calls list. That gives me linear time. So O(n).
+Task2 - I used a for loop to get the callers and the recievers from the calls list. That gives me linear time. So O(n), n is the number of calls in the calls list.
 
-Task3 - The overall complexity is O(n(k + m)). The main function is (getAreaCodeList). n being the number of total calls, k the first 4 characters in each Bangolre numbers , m the number of characters in each
-     area code called by banglore number. I looped through the calls to get the Banglore callers then get the area code for each call reciever
-     from those callers.
-     To print the results for both parts, I used the getAreaCodeList. Sorted the list (O(nlog(n) smaller than O(n(k + m)) then loop through the 
-     list to print the codes (O(n) smaller than O(n(k + m)). 
-     I also calculated the length of the list (O(1). 
+Task3 - The overall complexity is O(nlogn). The main function is (getAreaCodeList) and is of O(n) n being the number of total calls.
+         However I sorted the set in the printResult function and that gives a O(nlogn) overall.
 
 
 Task4 - I loop through the texts list to get both senders and recievers number with a for loop. That's O(n).
-         Then looped through the calls to get the recievers. that's O(m). Looped through the calls again to filter calls that are not in the texts or call recievers' lists. 
-         that's O(m). So O(n + m).
+         Then looped through the calls to get the recievers. that's O(m). I sorted telemarketers list before printing the numbers. That gives a O(nlogn) overall.
